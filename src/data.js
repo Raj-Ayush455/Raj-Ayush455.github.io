@@ -206,7 +206,7 @@ export const achievements = [
   { big: '#129', title: 'ICPC 2026 Online Challenge', detail: 'Out of 34,000+ teams, powered by Huawei.' },
   { big: 'Specialist', title: 'Codeforces', detail: 'Handle freakycoder_151 · 550+ DSA problems solved.', link: 'https://codeforces.com/profile/freakycoder_151' },
   { big: 'Top 150', title: 'SEBI Securities Market TechSprint', detail: 'Finalist out of 3,000+ teams.' },
-  { big: '#298', title: 'Amazon ML Challenge 2026', detail: 'Out of 4,000+ teams.' },
+  { big: '#289', title: 'Amazon ML Challenge 2026', detail: 'Out of 35,000+ teams.' },
   { big: '5★', title: 'HackerRank', detail: 'C++, Java and Python.' },
   { big: 'Lead', title: 'GDSC, BIT Mesra', detail: 'Tech Lead for the Google Developer Student Club.' },
 ];
