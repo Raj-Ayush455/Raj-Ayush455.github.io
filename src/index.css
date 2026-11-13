@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* Palette: warm ink + paper with a single muted sage accent. No neon, no gradients-on-everything. */
+:root,
+[data-theme="dark"] {
+  --bg: #0e0e0c;
+  --surface: #151513;
+  --surface-2: #1c1b18;
+  --line: #2a2925;
+  --ink: #e9e5dc;
+  --muted: #9b968b;
+  --faint: #6b675f;
+  --accent: #a8b58f;
+  --accent-ink: #11120e;
+  --danger: #c58b7a;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f3f0e8;
+  --surface: #faf8f3;
+  --surface-2: #ebe7dc;
+  --line: #d9d3c4;
+  --ink: #1d1c19;
+  --muted: #5d594f;
+  --faint: #8a857a;
+  --accent: #5c6b45;
+  --accent-ink: #f8f6f0;
+  --danger: #9c4f3c;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-danger: var(--danger);
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+/* Faint dot grid used behind the hero */
+.dot-grid {
+  background-image: radial-gradient(color-mix(in oklab, var(--ink) 9%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%);
+}
+
+/* Card that lights its border near the cursor (set --mx/--my from JS) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx, -500px) var(--my, -500px),
+      color-mix(in oklab, var(--accent) 55%, transparent), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  background: var(--accent);
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .caret {
+    animation: none;
+  }
+}
