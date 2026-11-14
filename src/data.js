@@ -84,6 +84,25 @@ export const projectFilters = ['All', 'AI / ML', 'Backend', 'Infra'];
 
 export const projects = [
   {
+    id: 'extinct',
+    title: 'Extinct',
+    tagline: 'Self-hosted personal AI agent you text on Telegram',
+    year: '2026',
+    categories: ['AI / ML', 'Backend'],
+    stack: ['Python', 'Temporal', 'Playwright', 'Docker', 'PostgreSQL'],
+    repo: 'https://github.com/Raj-Ayush455/extinct',
+    metrics: [
+      { v: '177', l: 'tests' },
+      { v: '0', l: 'lost or repeated actions on crash' },
+      { v: '4', l: 'Docker services, localhost only' },
+    ],
+    points: [
+      'Temporal workflows run every conversation turn (one workflow per user, signals, debounce, timers), so a crashed worker loses nothing and never repeats an action.',
+      'Tool-calling loop where the model decides and code acts: Gmail via OAuth, memory, cron-scheduled tasks, and its own Chrome in Docker with a noVNC live view for human takeover on logins and CAPTCHAs.',
+      'Email and web text are tagged untrusted behind a prompt-injection guard; risky actions need a Telegram button tap; secrets are AES-GCM envelope-encrypted.',
+    ],
+  },
+  {
     id: 'limitplane',
     title: 'LimitPlane',
     tagline: 'Multi-tenant rate-limiting gateway',
